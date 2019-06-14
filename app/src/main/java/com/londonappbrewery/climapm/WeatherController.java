@@ -33,9 +33,9 @@ public class WeatherController extends AppCompatActivity {
     // App ID to use OpenWeather data
     final String APP_ID = "bfef8757fdf87923e4b003eb66861c41";
     // Time between location updates (5000 milliseconds or 5 seconds)
-    final long MIN_TIME = 50;
+    final long MIN_TIME = 5;
     // Distance between location updates (1000m or 1km)
-    final float MIN_DISTANCE = 100;
+    final float MIN_DISTANCE = 1;
 
     final String LOGCAT_TAG = "Clima";
 
@@ -87,11 +87,24 @@ public class WeatherController extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(LOGCAT_TAG, "onResume() called");
-        getWeatherForCurrentLocation();
+        Intent myIntent = getIntent();
+        String city = myIntent.getStringExtra( "City");
+        if(city!=null){
+            getWeatherForNewCity(city);
+        }else {
+            Log.d(LOGCAT_TAG, "Getting weather for current location");
+            getWeatherForCurrentLocation();
+        }
     }
 
     // TODO: Add getWeatherForNewCity(String city) here:
 
+    private void getWeatherForNewCity(String city){
+        RequestParams params = new RequestParams();
+        params.put("q", city);
+        params.put("appid", APP_ID);
+        letsDoSomeNetworking(params);
+    }
 
     // TODO: Add getWeatherForCurrentLocation() here:
 
