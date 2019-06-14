@@ -33,9 +33,9 @@ public class WeatherController extends AppCompatActivity {
     // App ID to use OpenWeather data
     final String APP_ID = "bfef8757fdf87923e4b003eb66861c41";
     // Time between location updates (5000 milliseconds or 5 seconds)
-    final long MIN_TIME = 5;
+    final long MIN_TIME = 5000;
     // Distance between location updates (1000m or 1km)
-    final float MIN_DISTANCE = 1;
+    final float MIN_DISTANCE = 1000;
 
     final String LOGCAT_TAG = "Clima";
 
